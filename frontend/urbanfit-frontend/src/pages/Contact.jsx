@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ScrollReveal from "../components/ScrollReveal";
 
 export default function Contact() {
   const [form, setForm] = useState({

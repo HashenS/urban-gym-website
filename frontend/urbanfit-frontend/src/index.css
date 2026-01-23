@@ -1,68 +1,197 @@
+/* =========================
+   UrbanFit Global Styles
+========================= */
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --bg: #070b12;
+  --panel: rgba(255, 255, 255, 0.04);
+  --panel2: rgba(255, 255, 255, 0.06);
+  --border: rgba(255, 255, 255, 0.08);
+  --text: rgba(255, 255, 255, 0.92);
+  --muted: rgba(255, 255, 255, 0.72);
+  --green: rgba(34, 197, 94, 0.95);
+
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
+  background: radial-gradient(900px 400px at 20% 0%, rgba(34,197,94,0.14), transparent 60%),
+              radial-gradient(700px 350px at 90% 10%, rgba(34,197,94,0.10), transparent 60%),
+              var(--bg);
+  color: var(--text);
+}
+
+/* important: stop Vite template centering */
+#root {
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* links */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+a:hover { opacity: 0.95; }
+
+/* =========================
+   Helpers / Layout
+========================= */
+
+.container {
+  width: min(1100px, calc(100% - 36px));
+  margin: 0 auto;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+.section {
+  padding: 56px 0;
+}
+
+.grid {
+  display: grid;
+  gap: 14px;
+}
+.grid.cols2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid.cols3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+@media (max-width: 900px){
+  .grid.cols3 { grid-template-columns: 1fr; }
+  .grid.cols2 { grid-template-columns: 1fr; }
+}
+
+/* =========================
+   Glass / Card / Buttons
+========================= */
+
+.glass {
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+  backdrop-filter: blur(14px);
+}
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+
+.badge {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+  background: rgba(34, 197, 94, 0.10);
+  border: 1px solid rgba(34, 197, 94, 0.22);
+}
+
+.h1 {
+  font-size: clamp(34px, 5vw, 56px);
+  line-height: 1.05;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-weight: 900;
+  font-size: 14px;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  border: 1px solid var(--border);
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+  user-select: none;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.btn:hover { transform: translateY(-1px); }
+
+.btn.primary {
+  background: rgba(34, 197, 94, 0.92);
+  color: #06120b;
+  border-color: rgba(34, 197, 94, 0.35);
+  box-shadow: 0 12px 30px rgba(34,197,94,0.18);
+}
+
+.btn.ghost {
+  background: rgba(255,255,255,0.03);
+  color: var(--text);
+}
+
+/* hover glow used on cards */
+.hoverGlow {
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.hoverGlow:hover {
+  transform: translateY(-3px);
+  border-color: rgba(34,197,94,0.35);
+  box-shadow: 0 0 0 1px rgba(34,197,94,0.20), 0 18px 50px rgba(0,0,0,0.45);
+}
+
+/* =========================
+   HERO FLOATING ICONS (FIXED)
+========================= */
+
+.hero-floats{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+  z-index:0;
+}
+
+.hero-float{
+  position:absolute;
+  opacity:0.12;
+  animation: heroFloat 10s ease-in-out infinite;
+  will-change: transform;
+}
+
+.hero-float img{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:contain;
+
+  /* makes black svg look visible */
+  filter: brightness(0) invert(1) drop-shadow(0 0 18px rgba(34,197,94,0.20));
+  opacity: 0.9;
+}
+
+.hero-float.float2{ animation-duration: 12s; }
+.hero-float.float3{ animation-duration: 14s; }
+.hero-float.float4{ animation-duration: 16s; }
+
+@keyframes heroFloat{
+  0%,100%{ transform: translateY(0) translateX(0) rotate(-10deg); }
+  50%{ transform: translateY(-18px) translateX(10px) rotate(-10deg); }
+}
+
+@media (max-width: 640px){
+  .hero-float{ opacity: 0.12; }
+  .hero-float.float3, .hero-float.float4{ display:none; }
 }

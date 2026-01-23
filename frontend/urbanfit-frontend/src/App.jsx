@@ -8,6 +8,7 @@ import Services from "./pages/Services";
 import Trainers from "./pages/Trainers";
 import Pricing from "./pages/Pricing";
 import Contact from "./pages/Contact";
+import "./styles/theme.css";
 
 export default function App() {
   return (
