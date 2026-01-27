@@ -3,15 +3,17 @@ import { Link } from "react-router-dom";
 import Section from "../components/Section";
 import Card from "../components/Card";
 import ScrollReveal from "../components/ScrollReveal";
+import ServiceCard from "../components/ServiceCard";
 
-// ✅ Put your image here: src/assets/hero-athlete.png
-import heroAthlete from "../assets/hero.png";
+// ✅ Scroll-scrubbed video component (REPLACED BY STATIC IMAGE)
+// import HeroVideo from "../components/HeroVideo";
+import heroImg from "../assets/hero.png";
 
 export default function Home() {
   const services = [
-    { t: "Strength Training", d: "Progressive plans to build real muscle and power." },
-    { t: "Fat Loss Programs", d: "Sustainable routines with diet guidance & tracking." },
-    { t: "Group Classes", d: "High-energy sessions to stay consistent and motivated." },
+    { t: "Strength Training", d: "Progressive plans to build real muscle and power.", folder: "strength_traning", count: 31 },
+    { t: "Fat Loss Programs", d: "Sustainable routines with diet guidance & tracking.", folder: "fatt_loss", count: 63 },
+    { t: "Group Classes", d: "High-energy sessions to stay consistent and motivated.", folder: "group_classes", count: 42 },
   ];
 
   const trainers = [
@@ -36,7 +38,7 @@ export default function Home() {
           <ScrollReveal>
             <div className="glass heroCover">
               {/* image behind text */}
-              <img className="heroAthlete" src={heroAthlete} alt="Athlete" />
+              <img src={heroImg} className="heroAthlete" alt="Hero Athlete" />
 
               {/* content above image */}
               <div className="heroCoverContent">
@@ -84,7 +86,12 @@ export default function Home() {
         <div className="grid cols3">
           {services.map((x, i) => (
             <ScrollReveal key={x.t} className={delayClass(i)}>
-              <Card className="hoverGlow" style={{ padding: 18 }}>
+              <ServiceCard
+                className="hoverGlow"
+                style={{ padding: 18 }}
+                folderName={x.folder}
+                frameCount={x.count}
+              >
                 <div style={{ fontWeight: 900 }}>{x.t}</div>
                 <div className="p">{x.d}</div>
                 <div style={{ marginTop: 10 }}>
@@ -92,7 +99,7 @@ export default function Home() {
                     Explore all services
                   </Link>
                 </div>
-              </Card>
+              </ServiceCard>
             </ScrollReveal>
           ))}
         </div>
