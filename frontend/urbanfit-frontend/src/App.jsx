@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import CursorTrail from "./components/CursorTrail";
+
 
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -14,7 +14,7 @@ import "./styles/theme.css";
 export default function App() {
   return (
     <BrowserRouter>
-      <CursorTrail />
+
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
