@@ -120,7 +120,7 @@ export default function Trainers() {
 
                   <div style={{ marginTop: 14, display: "flex", gap: 10, flexWrap: "wrap" }}>
                     <Link className="btn ghost" to="/pricing">See Plans</Link>
-                    <Link className="btn primary" to="/contact">Book</Link>
+                    
                   </div>
                 </Card>
               </ScrollReveal>

@@ -1,8 +1,11 @@
+// src/pages/Home.jsx
 import { Link } from "react-router-dom";
 import Section from "../components/Section";
 import Card from "../components/Card";
 import ScrollReveal from "../components/ScrollReveal";
-import FloatingIcons from "../components/FloatingIcons";
+
+// ✅ Put your image here: src/assets/hero-athlete.png
+import heroAthlete from "../assets/hero.png";
 
 export default function Home() {
   const services = [
@@ -23,31 +26,23 @@ export default function Home() {
     { big: "1:1", small: "Personal coaching" },
   ];
 
-  // uses your CSS classes: revealDelay1..revealDelay6
   const delayClass = (i) => `revealDelay${Math.min(i + 1, 6)}`;
 
   return (
     <>
       {/* HERO */}
-      <div className="section" style={{ paddingTop: 90 }}>
+      <div className="section" style={{ paddingTop: 60 }}>
         <div className="container">
           <ScrollReveal>
-            <div
-              className="glass"
-              style={{
-                padding: 28,
-                position: "relative",
-                overflow: "hidden",
-              }}
-            >
-              {/* Background animated icons */}
-              <FloatingIcons />
+            <div className="glass heroCover">
+              {/* image behind text */}
+              <img className="heroAthlete" src={heroAthlete} alt="Athlete" />
 
-              {/* Keep content above icons */}
-              <div style={{ position: "relative", zIndex: 1 }}>
-                <span className="badge">🔥 UrbanFit Lanka • Hardcore Training</span>
+              {/* content above image */}
+              <div className="heroCoverContent">
+                <span className="badge" style={{ marginBottom: 0 }}>🔥 UrbanFit Lanka • Hardcore Training</span>
 
-                <h1 className="h1" style={{ marginTop: 14 }}>
+                <h1 className="heroHeadlineBig" style={{ marginTop: 10 }}>
                   Train harder.{" "}
                   <span style={{ color: "rgba(34,197,94,0.95)" }}>Look better.</span>
                   <br /> Feel unstoppable.
@@ -68,7 +63,7 @@ export default function Home() {
                 </div>
 
                 {/* Quick stats */}
-                <div className="grid cols3" style={{ marginTop: 18 }}>
+                <div className="grid cols3 heroStats">
                   {stats.map((x, i) => (
                     <ScrollReveal key={x.big} className={delayClass(i)}>
                       <Card className="hoverGlow" style={{ padding: 18 }}>
@@ -85,61 +80,49 @@ export default function Home() {
       </div>
 
       {/* SERVICES */}
-      <ScrollReveal>
-        <Section
-          title="Services"
-          subtitle="Everything you need — strength, fat loss, and performance."
-        >
-          <div className="grid cols3">
-            {services.map((x, i) => (
-              <ScrollReveal key={x.t} className={delayClass(i)}>
-                <Card className="hoverGlow" style={{ padding: 18 }}>
-                  <div style={{ fontWeight: 900 }}>{x.t}</div>
-                  <div className="p">{x.d}</div>
-
-                  <div style={{ marginTop: 10 }}>
-                    <Link className="btn ghost" to="/services">
-                      Explore all services
-                    </Link>
-                  </div>
-                </Card>
-              </ScrollReveal>
-            ))}
-          </div>
-        </Section>
-      </ScrollReveal>
+      <Section title="Services" subtitle="Everything you need — strength, fat loss, and performance.">
+        <div className="grid cols3">
+          {services.map((x, i) => (
+            <ScrollReveal key={x.t} className={delayClass(i)}>
+              <Card className="hoverGlow" style={{ padding: 18 }}>
+                <div style={{ fontWeight: 900 }}>{x.t}</div>
+                <div className="p">{x.d}</div>
+                <div style={{ marginTop: 10 }}>
+                  <Link className="btn ghost" to="/services">
+                    Explore all services
+                  </Link>
+                </div>
+              </Card>
+            </ScrollReveal>
+          ))}
+        </div>
+      </Section>
 
       {/* TRAINERS */}
-      <ScrollReveal>
-        <Section title="Trainers" subtitle="Certified coaches to guide your journey.">
-          <div className="grid cols3">
-            {trainers.map((x, i) => (
-              <ScrollReveal key={x.n} className={delayClass(i)}>
-                <Card className="hoverGlow" style={{ padding: 18 }}>
-                  <div style={{ fontWeight: 900 }}>{x.n}</div>
-                  <div className="p">{x.s}</div>
-
-                  <div style={{ marginTop: 10, display: "flex", gap: 10, flexWrap: "wrap" }}>
-                    <Link className="btn ghost" to="/trainers">
-                      View Profile
-                    </Link>
-                    <Link className="btn primary" to="/contact">
-                      Book
-                    </Link>
-                  </div>
-                </Card>
-              </ScrollReveal>
-            ))}
-          </div>
-        </Section>
-      </ScrollReveal>
+      <Section title="Trainers" subtitle="Certified coaches to guide your journey.">
+        <div className="grid cols3">
+          {trainers.map((x, i) => (
+            <ScrollReveal key={x.n} className={delayClass(i)}>
+              <Card className="hoverGlow" style={{ padding: 18 }}>
+                <div style={{ fontWeight: 900 }}>{x.n}</div>
+                <div className="p">{x.s}</div>
+                <div style={{ marginTop: 10 }}>
+                  <Link className="btn ghost" to="/trainers">
+                    View Profile
+                  </Link>
+                </div>
+              </Card>
+            </ScrollReveal>
+          ))}
+        </div>
+      </Section>
 
       {/* CTA */}
-      <ScrollReveal>
-        <Section
-          title="Ready to start?"
-          subtitle="Send us a message and we’ll recommend the best plan for you."
-        >
+      <Section
+        title="Ready to start?"
+        subtitle="Send us a message and we’ll recommend the best plan for you."
+      >
+        <ScrollReveal>
           <div
             className="glass"
             style={{
@@ -159,8 +142,8 @@ export default function Home() {
               Contact UrbanFit
             </Link>
           </div>
-        </Section>
-      </ScrollReveal>
+        </ScrollReveal>
+      </Section>
     </>
   );
 }

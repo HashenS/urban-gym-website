@@ -22,28 +22,22 @@
 
 * { box-sizing: border-box; }
 
-html, body {
-  height: 100%;
-}
+html, body { height: 100%; }
 
 body {
   margin: 0;
-  background: radial-gradient(900px 400px at 20% 0%, rgba(34,197,94,0.14), transparent 60%),
-              radial-gradient(700px 350px at 90% 10%, rgba(34,197,94,0.10), transparent 60%),
-              var(--bg);
+  background:
+    radial-gradient(900px 400px at 20% 0%, rgba(34,197,94,0.14), transparent 60%),
+    radial-gradient(700px 350px at 90% 10%, rgba(34,197,94,0.10), transparent 60%),
+    var(--bg);
   color: var(--text);
 }
 
 /* important: stop Vite template centering */
-#root {
-  min-height: 100vh;
-}
+#root { min-height: 100vh; }
 
 /* links */
-a {
-  color: inherit;
-  text-decoration: none;
-}
+a { color: inherit; text-decoration: none; }
 a:hover { opacity: 0.95; }
 
 /* =========================
@@ -55,9 +49,7 @@ a:hover { opacity: 0.95; }
   margin: 0 auto;
 }
 
-.section {
-  padding: 56px 0;
-}
+.section { padding: 56px 0; }
 
 .grid {
   display: grid;
@@ -152,46 +144,95 @@ a:hover { opacity: 0.95; }
   box-shadow: 0 0 0 1px rgba(34,197,94,0.20), 0 18px 50px rgba(0,0,0,0.45);
 }
 
+/* moving line separator */
+.energyLine{
+  height: 2px;
+  width: 100%;
+  margin: 60px 0;
+  background: linear-gradient(90deg, transparent, #22c55e, transparent);
+  opacity: .6;
+  animation: energyMove 2s linear infinite;
+}
+
+@keyframes energyMove{
+  from{ background-position: 0% }
+  to  { background-position: 200% }
+}
 /* =========================
-   HERO FLOATING ICONS (FIXED)
+   HERO (Image behind text like reference)
 ========================= */
 
-.hero-floats{
+.heroCover {
+  position: relative;
+  overflow: hidden;
+  padding: 34px 28px 28px;
+  min-height: 430px;
+}
+
+/* background glow */
+.heroCover::before{
+  content:"";
   position:absolute;
-  inset:0;
+  inset:-140px;
+  background:
+    radial-gradient(650px 320px at 20% 20%, rgba(34,197,94,0.22), transparent 60%),
+    radial-gradient(520px 320px at 80% 35%, rgba(16,185,129,0.16), transparent 60%),
+    radial-gradient(520px 320px at 50% 90%, rgba(59,130,246,0.10), transparent 65%);
+  filter: blur(34px);
+  opacity: .9;
+  animation: glowDrift 10s ease-in-out infinite;
   pointer-events:none;
-  overflow:hidden;
-  z-index:0;
+  z-index: 0;
 }
 
-.hero-float{
-  position:absolute;
-  opacity:0.12;
-  animation: heroFloat 10s ease-in-out infinite;
-  will-change: transform;
+/* image layer */
+.heroAthlete {
+  position: absolute;
+  right: 40px;          /* move slightly from right */
+  bottom: -10px;       /* pull down a little */
+  height: 420px;       /* 🔥 MAIN SIZE CONTROL (try 320–460) */
+  max-width: 45%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;
+
+  filter: 
+    drop-shadow(0 25px 60px rgba(0,0,0,0.65))
+    drop-shadow(0 0 25px rgba(34,197,94,0.25));
 }
 
-.hero-float img{
-  width:100%;
-  height:100%;
-  display:block;
-  object-fit:contain;
-
-  /* makes black svg look visible */
-  filter: brightness(0) invert(1) drop-shadow(0 0 18px rgba(34,197,94,0.20));
-  opacity: 0.9;
+/* content above image */
+.heroCoverContent{
+  position: relative;
+  z-index: 2;
+  max-width: 680px;
 }
 
-.hero-float.float2{ animation-duration: 12s; }
-.hero-float.float3{ animation-duration: 14s; }
-.hero-float.float4{ animation-duration: 16s; }
-
-@keyframes heroFloat{
-  0%,100%{ transform: translateY(0) translateX(0) rotate(-10deg); }
-  50%{ transform: translateY(-18px) translateX(10px) rotate(-10deg); }
+/* big headline overlay style (like the example) */
+.heroHeadlineBig{
+  font-size: clamp(40px, 5.6vw, 66px);
+  line-height: 1.0;
+  letter-spacing: -0.03em;
 }
 
-@media (max-width: 640px){
-  .hero-float{ opacity: 0.12; }
-  .hero-float.float3, .hero-float.float4{ display:none; }
+/* stats should stay above */
+.heroStats{
+  margin-top: 18px;
+  position: relative;
+  z-index: 2;
+}
+
+/* responsive */
+/* Mobile fix */
+@media (max-width: 900px) {
+  .heroAthlete {
+    position: relative;
+    height: 280px;     /* smaller on phone */
+    max-width: 100%;
+    right: 0;
+    bottom: 0;
+    margin: 20px auto 0;
+    display: block;
+  }
 }
