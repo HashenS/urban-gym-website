@@ -55,9 +55,7 @@ export default function TrainerCard({ name, specialty, image, children, classNam
                     <div className="p" style={{ color: "rgba(255,255,255,0.8)", fontSize: "0.95rem", marginTop: "4px" }}>
                         {specialty}
                     </div>
-                    <div style={{ marginTop: "16px" }}>
-                        {children}
-                    </div>
+                    {children}
                 </div>
             </Card>
         </div>

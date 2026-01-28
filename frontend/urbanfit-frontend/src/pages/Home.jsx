@@ -5,6 +5,7 @@ import Card from "../components/Card";
 import ServiceCard from "../components/ServiceCard";
 import TrainerCard from "../components/TrainerCard";
 import ScrollReveal from "../components/ScrollReveal";
+import ExplodingButton from "../components/ExplodingButton";
 
 // ✅ Scroll-scrubbed video component (REPLACED BY STATIC IMAGE)
 // import HeroVideo from "../components/HeroVideo";
@@ -48,9 +49,8 @@ export default function Home() {
 
               {/* content above image */}
               <div className="heroCoverContent">
-                <span className="badge" style={{ marginBottom: 0 }}>🔥 UrbanFit Lanka • Hardcore Training</span>
 
-                <h1 className="heroHeadlineBig" style={{ marginTop: 10 }}>
+                <h1 className="heroHeadlineBig">
                   Train harder.{" "}
                   <span style={{ color: "rgba(34,197,94,0.95)" }}>Look better.</span>
                   <br /> Feel unstoppable.
@@ -61,10 +61,10 @@ export default function Home() {
                   Start your transformation with UrbanFit Lanka today.
                 </p>
 
-                <div style={{ display: "flex", gap: 12, marginTop: 16, flexWrap: "wrap" }}>
-                  <Link className="btn primary" to="/contact">
+                <div className="button-group-mobile" style={{ display: "flex", gap: 16, marginTop: 16, flexWrap: "wrap" }}>
+                  <ExplodingButton to="/contact">
                     Get a Free Consultation
-                  </Link>
+                  </ExplodingButton>
                   <Link className="btn ghost" to="/pricing">
                     See Plans
                   </Link>
@@ -100,11 +100,9 @@ export default function Home() {
               >
                 <div style={{ fontWeight: 900 }}>{x.t}</div>
                 <div className="p">{x.d}</div>
-                <div style={{ marginTop: 10 }}>
-                  <Link className="btn ghost" to="/services">
-                    Explore all services
-                  </Link>
-                </div>
+                <Link className="btn ghost" to="/services">
+                  Explore all services
+                </Link>
               </ServiceCard>
             </ScrollReveal>
           ))}
@@ -137,17 +135,7 @@ export default function Home() {
         subtitle="Send us a message and we’ll recommend the best plan for you."
       >
         <ScrollReveal>
-          <div
-            className="glass"
-            style={{
-              padding: 22,
-              display: "flex",
-              justifyContent: "space-between",
-              gap: 16,
-              flexWrap: "wrap",
-              alignItems: "center",
-            }}
-          >
+          <div className="glass cta-box">
             <div>
               <div style={{ fontWeight: 900, fontSize: 18 }}>Get your free consultation</div>
               <div className="p">We reply fast. Let’s build your plan.</div>

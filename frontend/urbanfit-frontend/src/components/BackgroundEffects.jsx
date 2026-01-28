@@ -40,7 +40,7 @@ const GymIcons = () => {
                     }}
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={{
-                        opacity: [0.15, 0.4, 0.15],
+                        opacity: [0.04, 0.1, 0.04], // Subtler, ambient opacity
                         y: ["-30px", "30px", "-30px"],
                         x: ["-15px", "15px", "-15px"],
                         rotate: [0, 360],

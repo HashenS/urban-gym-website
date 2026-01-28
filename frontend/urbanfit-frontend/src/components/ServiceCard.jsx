@@ -72,7 +72,7 @@ export default function ServiceCard({ children, className = "", style, folderNam
                 />
 
                 {/* Content Layer */}
-                <div style={{ position: "relative", zIndex: 1 }}>
+                <div className="serviceCardContent" style={{ position: "relative", zIndex: 1 }}>
                     {children}
                 </div>
             </Card>

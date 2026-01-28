@@ -45,7 +45,6 @@ export default function Trainers() {
         <div className="container">
           <ScrollReveal>
             <div className="glass" style={{ padding: 24 }}>
-              <span className="badge">👟 Trainers</span>
 
               <h1 className="h1" style={{ marginTop: 12 }}>
                 Train with{" "}
@@ -120,7 +119,7 @@ export default function Trainers() {
 
                   <div style={{ marginTop: 14, display: "flex", gap: 10, flexWrap: "wrap" }}>
                     <Link className="btn ghost" to="/pricing">See Plans</Link>
-                    
+
                   </div>
                 </Card>
               </ScrollReveal>

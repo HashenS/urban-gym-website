@@ -76,55 +76,61 @@ export default function Pricing() {
       <div className="section" style={{ paddingTop: 90, paddingBottom: 30 }}>
         <div className="container">
           <ScrollReveal>
-            <div className="glass" style={{ padding: 24 }}>
-              <span className="badge">💳 Pricing</span>
+            <div className="glass header-glass" style={{ textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center" }}>
 
-              <h1 className="h1" style={{ marginTop: 12 }}>
+              <h1 className="h1" style={{ marginTop: 16 }}>
                 Choose your{" "}
                 <span style={{ color: "rgba(34,197,94,0.95)" }}>plan</span>.
               </h1>
 
-              <p className="p" style={{ maxWidth: 820, marginTop: 10 }}>
+              <p className="p" style={{ maxWidth: 720, marginTop: 12, marginInline: "auto" }}>
                 Simple pricing. Pick a plan and start your fitness journey. If you’re not sure,
                 message us and we’ll recommend the best option.
               </p>
 
-              {/* Billing toggle */}
-              <div
-                className="glass"
-                style={{
-                  marginTop: 16,
-                  padding: 10,
-                  display: "inline-flex",
-                  gap: 8,
-                  alignItems: "center",
-                }}
-              >
-                <button
-                  className={billing === "weekly" ? "btn primary" : "btn ghost"}
-                  type="button"
-                  onClick={() => setBilling("weekly")}
-                  style={{ padding: "10px 14px" }}
-                >
-                  Weekly
-                </button>
-                <button
-                  className={billing === "monthly" ? "btn primary" : "btn ghost"}
-                  type="button"
-                  onClick={() => setBilling("monthly")}
-                  style={{ padding: "10px 14px" }}
-                >
-                  Monthly
-                </button>
+              {/* Billing toggle - Refined track design */}
+              <div className="billing-container">
+                <div style={{ display: "flex", gap: 4, width: "100%", position: "relative" }}>
+                  <button
+                    className={billing === "weekly" ? "btn primary" : "btn ghost"}
+                    type="button"
+                    onClick={() => setBilling("weekly")}
+                    style={{
+                      padding: "10px",
+                      fontSize: 13,
+                      flex: 1,
+                      borderRadius: 12,
+                      border: "none",
+                      background: billing === "weekly" ? undefined : "transparent"
+                    }}
+                  >
+                    Weekly Billing
+                  </button>
+                  <button
+                    className={billing === "monthly" ? "btn primary" : "btn ghost"}
+                    type="button"
+                    onClick={() => setBilling("monthly")}
+                    style={{
+                      padding: "10px",
+                      fontSize: 13,
+                      flex: 1,
+                      borderRadius: 12,
+                      border: "none",
+                      background: billing === "monthly" ? undefined : "transparent"
+                    }}
+                  >
+                    Monthly Billing
+                  </button>
+                </div>
 
-                <span className="p" style={{ marginLeft: 6, fontSize: 13 }}>
+                <span className="p billing-hint">
                   {billing === "weekly"
-                    ? "Weekly price is an estimate (monthly ÷ 4)."
-                    : "Most members choose monthly."}
+                    ? "pay as you train"
+                    : "Best Value • Save 15%"}
                 </span>
               </div>
 
-              <div style={{ display: "flex", gap: 12, marginTop: 16, flexWrap: "wrap" }}>
+              <div className="pricing-header-actions">
                 <Link className="btn primary" to="/contact">Get a Recommendation</Link>
                 <Link className="btn ghost" to="/services">View Services</Link>
               </div>
@@ -146,7 +152,9 @@ export default function Pricing() {
                   className="glass card hoverGlow"
                   style={{
                     position: "relative",
-                    padding: 20,
+                    padding: 30, // Increased padding for more premium feel
+                    display: "flex",
+                    flexDirection: "column",
                     border: p.popular ? "1px solid rgba(34,197,94,0.35)" : undefined,
                     boxShadow: p.popular
                       ? "0 0 0 1px rgba(34,197,94,0.25), 0 0 40px rgba(34,197,94,0.12)"
@@ -159,39 +167,45 @@ export default function Pricing() {
                         position: "absolute",
                         top: 14,
                         right: 14,
-                        padding: "6px 10px",
+                        padding: "6px 12px",
                         borderRadius: 999,
-                        background: "rgba(34,197,94,0.12)",
-                        border: "1px solid rgba(34,197,94,0.25)",
-                        fontSize: 12,
-                        fontWeight: 800,
+                        background: "rgba(34,197,94,0.15)",
+                        border: "1px solid rgba(34,197,94,0.3)",
+                        fontSize: 11,
+                        fontWeight: 900,
+                        letterSpacing: 0.5,
+                        zIndex: 2
                       }}
                     >
-                      ⭐ Most Popular
+                      ⭐ MOST POPULAR
                     </div>
                   )}
 
-                  <div style={{ fontWeight: 900, fontSize: 18 }}>{p.name}</div>
-                  <div className="p" style={{ marginTop: 4 }}>{p.tag}</div>
+                  {/* Content section that expands */}
+                  <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
+                    <div style={{ fontWeight: 900, fontSize: 22, letterSpacing: -0.5 }}>{p.name}</div>
+                    <div className="p" style={{ marginTop: 4, fontSize: 14 }}>{p.tag}</div>
 
-                  <div style={{ marginTop: 14, display: "flex", alignItems: "baseline", gap: 8 }}>
-                    <div style={{ fontSize: 28, fontWeight: 900 }}>
-                      {formatLKR(p.price)}
+                    <div style={{ marginTop: 24, display: "flex", alignItems: "baseline", gap: 8 }}>
+                      <div style={{ fontSize: 32, fontWeight: 900 }}>
+                        {formatLKR(p.price)}
+                      </div>
+                      <div className="p" style={{ fontSize: 14 }}>{p.period}</div>
                     </div>
-                    <div className="p">{p.period}</div>
+
+                    <ul style={{ marginTop: 20, paddingLeft: 18, color: "var(--muted)", lineHeight: 2, flex: 1 }}>
+                      {p.features.map((f) => (
+                        <li key={f} style={{ marginBottom: 4 }}>{f}</li>
+                      ))}
+                    </ul>
                   </div>
 
-                  <ul style={{ marginTop: 12, paddingLeft: 18, color: "var(--muted)", lineHeight: 1.8 }}>
-                    {p.features.map((f) => (
-                      <li key={f}>{f}</li>
-                    ))}
-                  </ul>
-
-                  <div style={{ marginTop: 14, display: "flex", gap: 10, flexWrap: "wrap" }}>
-                    <Link className={p.popular ? "btn primary" : "btn ghost"} to="/contact">
+                  {/* Buttons locked to bottom */}
+                  <div style={{ marginTop: 30, display: "flex", flexDirection: "column", gap: 12 }}>
+                    <Link className={p.popular ? "btn primary" : "btn ghost"} to="/contact" style={{ textAlign: "center", width: "100%" }}>
                       Choose {p.name}
                     </Link>
-                    <Link className="btn ghost" to="/contact">
+                    <Link className="btn ghost" to="/contact" style={{ textAlign: "center", width: "100%", padding: "10px 0", fontSize: 14 }}>
                       Ask Questions
                     </Link>
                   </div>
@@ -265,17 +279,7 @@ export default function Pricing() {
       {/* CTA */}
       <ScrollReveal>
         <Section title="Ready to start?" subtitle="Send your goal and we’ll help you choose the right plan.">
-          <div
-            className="glass"
-            style={{
-              padding: 22,
-              display: "flex",
-              justifyContent: "space-between",
-              gap: 16,
-              flexWrap: "wrap",
-              alignItems: "center",
-            }}
-          >
+          <div className="glass cta-box">
             <div>
               <div style={{ fontWeight: 900, fontSize: 18 }}>Get a free recommendation</div>
               <div className="p">Quick reply from UrbanFit Lanka.</div>

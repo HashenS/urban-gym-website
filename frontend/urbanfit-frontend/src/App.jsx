@@ -10,6 +10,7 @@ import Services from "./pages/Services";
 import Trainers from "./pages/Trainers";
 import Pricing from "./pages/Pricing";
 import Contact from "./pages/Contact";
+import Admin from "./pages/Admin";
 import "./styles/theme.css";
 
 export default function App() {
@@ -24,6 +25,7 @@ export default function App() {
         <Route path="/trainers" element={<Trainers />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
       <Footer />
     </BrowserRouter>

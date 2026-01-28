@@ -46,7 +46,6 @@ export default function Services() {
         <div className="container">
           <ScrollReveal>
             <div className="glass" style={{ padding: 24 }}>
-              <span className="badge">💪 Services</span>
               <h1 className="h1" style={{ marginTop: 12 }}>
                 Training built for{" "}
                 <span style={{ color: "rgba(34,197,94,0.95)" }}>real results</span>.
@@ -73,16 +72,16 @@ export default function Services() {
         >
           <div className="grid cols3">
             {services.map((s, i) => (
-         <ScrollReveal key={s.title} className={`revealDelay${i + 1}`}>
-          <Card className="hoverGlow">
-             <div style={{ fontWeight: 900 }}>{s.title}</div>
-              <div className="p" style={{ marginTop: 6 }}>{s.desc}</div>
+              <ScrollReveal key={s.title} className={`revealDelay${i + 1}`}>
+                <Card className="hoverGlow">
+                  <div style={{ fontWeight: 900 }}>{s.title}</div>
+                  <div className="p" style={{ marginTop: 6 }}>{s.desc}</div>
 
                   <ul style={{ marginTop: 10, paddingLeft: 18 }}>
-                    {s.points.map((p => 
-                      <li key={p}>{p}</li>   
-                        ))}
-                      </ul>
+                    {s.points.map((p =>
+                      <li key={p}>{p}</li>
+                    ))}
+                  </ul>
 
                   <div style={{ marginTop: 12 }}>
                     <Link className="btn ghost" to="/contact">Get Started</Link>

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Footer() {
   return (
     <div className="section" style={{ paddingTop: 28, paddingBottom: 28 }}>
@@ -15,8 +17,9 @@ export default function Footer() {
           </div>
         </div>
 
-        <div style={{ marginTop: 12, opacity: 0.7, fontSize: 13 }}>
-          © {new Date().getFullYear()} UrbanFit Lanka. All rights reserved.
+        <div style={{ marginTop: 12, opacity: 0.7, fontSize: 13, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <div>© {new Date().getFullYear()} UrbanFit Lanka. All rights reserved.</div>
+          <Link to="/admin" style={{ opacity: 0.2, textDecoration: "none", color: "inherit", fontSize: "11px" }}>Management</Link>
         </div>
       </div>
     </div>

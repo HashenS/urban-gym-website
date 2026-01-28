@@ -18,8 +18,7 @@ export default function About() {
       <div className="section" style={{ paddingTop: 90, paddingBottom: 30 }}>
         <div className="container">
           <ScrollReveal>
-            <div className="glass" style={{ padding: 24 }}>
-              <span className="badge">🏋️ About UrbanFit</span>
+            <div className="glass header-glass">
 
               <h1 className="h1" style={{ marginTop: 12 }}>
                 Built for{" "}
@@ -32,7 +31,7 @@ export default function About() {
                 and performance — with coaching that’s simple, structured, and sustainable.
               </p>
 
-              <div style={{ display: "flex", gap: 12, marginTop: 16, flexWrap: "wrap" }}>
+              <div className="button-group-mobile" style={{ display: "flex", gap: 16, marginTop: 16, flexWrap: "wrap" }}>
                 <Link className="btn primary" to="/contact">Talk to a Coach</Link>
                 <Link className="btn ghost" to="/services">View Services</Link>
               </div>
@@ -92,17 +91,7 @@ export default function About() {
           title="Ready to transform?"
           subtitle="Tell us your goal — we’ll suggest the best plan."
         >
-          <div
-            className="glass"
-            style={{
-              padding: 22,
-              display: "flex",
-              justifyContent: "space-between",
-              gap: 16,
-              flexWrap: "wrap",
-              alignItems: "center",
-            }}
-          >
+          <div className="glass cta-box">
             <div>
               <div style={{ fontWeight: 900, fontSize: 18 }}>Start today</div>
               <div className="p">Fast reply • Friendly coaching • Clear plan</div>
