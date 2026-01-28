@@ -67,6 +67,16 @@ export default function Navbar() {
 
           {/* Mobile Menu Overlay */}
           <div className={`mobile-menu ${isOpen ? "open" : ""}`}>
+            <button
+              className="mobile-menu-close"
+              onClick={() => setIsOpen(false)}
+              aria-label="Close Menu"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
             <NavLink to="/" onClick={() => setIsOpen(false)}>Home</NavLink>
             <NavLink to="/about" onClick={() => setIsOpen(false)}>About</NavLink>
             <NavLink to="/services" onClick={() => setIsOpen(false)}>Services</NavLink>

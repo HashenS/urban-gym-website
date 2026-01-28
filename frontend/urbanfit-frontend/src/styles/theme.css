@@ -490,6 +490,40 @@ a {
   box-shadow: -20px 0 60px rgba(0, 0, 0, 0.7);
 }
 
+.mobile-menu-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  color: var(--accent);
+  cursor: pointer;
+  z-index: 510;
+  padding: 0;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.mobile-menu-close:hover {
+  background: rgba(34, 197, 94, 0.15);
+  border-color: rgba(34, 197, 94, 0.4);
+  color: var(--accent2);
+  transform: rotate(90deg) scale(1.1);
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.25);
+}
+
+.mobile-menu-close:active {
+  transform: scale(0.95);
+}
+
 .mobile-menu.open {
   transform: translateX(0);
 }
