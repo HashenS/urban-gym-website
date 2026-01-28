@@ -105,6 +105,47 @@ export default function Contact() {
             )}
           </div>
         </ScrollReveal>
+
+        {/* What happens next */}
+        <div style={{ marginTop: 40 }}>
+          <ScrollReveal delay={200}>
+            <div style={{ textAlign: "center", marginBottom: 24 }}>
+              <div style={{ fontWeight: 800, fontSize: "0.9rem", color: "var(--accent)", letterSpacing: 2, textTransform: "uppercase" }}>
+                The Process
+              </div>
+              <h2 style={{ fontSize: "1.8rem", fontWeight: 900, marginTop: 8 }}>What happens next?</h2>
+            </div>
+
+            <div className="grid cols3">
+              <div className="glass" style={{ padding: 20, textAlign: "center" }}>
+                <div style={{ fontSize: "1.5rem", marginBottom: 12 }}>⚡</div>
+                <div style={{ fontWeight: 800, marginBottom: 6 }}>Fast Reply</div>
+                <div className="p" style={{ fontSize: "0.9rem" }}>We'll get back to you within 12-24 hours.</div>
+              </div>
+
+              <div className="glass" style={{ padding: 20, textAlign: "center" }}>
+                <div style={{ fontSize: "1.5rem", marginBottom: 12 }}>📋</div>
+                <div style={{ fontWeight: 800, marginBottom: 6 }}>Expert Review</div>
+                <div className="p" style={{ fontSize: "0.9rem" }}>A head coach will personally review your goals.</div>
+              </div>
+
+              <div className="glass" style={{ padding: 20, textAlign: "center" }}>
+                <div style={{ fontSize: "1.5rem", marginBottom: 12 }}>🌱</div>
+                <div style={{ fontWeight: 800, marginBottom: 6 }}>No Pressure</div>
+                <div className="p" style={{ fontSize: "0.9rem" }}>We provide recommendations, the choice is yours.</div>
+              </div>
+            </div>
+          </ScrollReveal>
+        </div>
+
+        {/* Quick Help Note */}
+        <ScrollReveal delay={400}>
+          <div className="glass" style={{ marginTop: 30, padding: 16, textAlign: "center", borderStyle: "dashed", borderColor: "rgba(255,255,255,0.15)" }}>
+            <div className="p" style={{ fontSize: "0.85rem", fontStyle: "italic" }}>
+              <strong>Pro Tip:</strong> Include your current fitness level and your primary goal (e.g. weight loss, strength) for a much faster and more accurate recommendation! 🏋️‍♂️
+            </div>
+          </div>
+        </ScrollReveal>
       </div>
     </div>
   );
