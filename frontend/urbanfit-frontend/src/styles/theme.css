@@ -372,10 +372,16 @@ a {
   opacity: 1;
   /* Frame is always visible */
   transition: transform 0.5s ease;
+
+  /* GPU Accel Fix */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: transform, background-image;
 }
 
 .serviceCardWrapper:hover .serviceCardAnimation {
-  transform: scale(1.1);
+  transform: scale(1.1) translateZ(0);
 }
 
 .serviceCardAnimation::before {
@@ -395,4 +401,28 @@ a {
     0 15px 40px rgba(0, 0, 0, .5),
     0 0 0 1px rgba(34, 197, 94, .35),
     0 0 35px rgba(34, 197, 94, .25);
+}
+
+/* Trainer Card Visuals */
+.trainerCardWrapper {
+  position: relative;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  cursor: pointer;
+  border-radius: 18px;
+}
+
+.trainerCardWrapper:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow:
+    0 15px 40px rgba(0, 0, 0, .5),
+    0 0 0 1px rgba(34, 197, 94, .35),
+    0 0 35px rgba(34, 197, 94, .25);
+}
+
+.trainerCardWrapper:hover .trainerCardImage {
+  transform: scale(1.1);
+}
+
+.trainerCardWrapper:hover .trainerCard {
+  border-color: rgba(34, 197, 94, 0.35);
 }

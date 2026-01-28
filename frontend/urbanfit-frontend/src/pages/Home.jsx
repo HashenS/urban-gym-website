@@ -2,12 +2,18 @@
 import { Link } from "react-router-dom";
 import Section from "../components/Section";
 import Card from "../components/Card";
-import ScrollReveal from "../components/ScrollReveal";
 import ServiceCard from "../components/ServiceCard";
+import TrainerCard from "../components/TrainerCard";
+import ScrollReveal from "../components/ScrollReveal";
 
 // ✅ Scroll-scrubbed video component (REPLACED BY STATIC IMAGE)
 // import HeroVideo from "../components/HeroVideo";
 import heroImg from "../assets/hero.png";
+
+// Trainer Images
+import nimalImg from "../assets/trainers/nimal.jpg";
+import shehaniImg from "../assets/trainers/shehani.jpg";
+import kasunImg from "../assets/trainers/kasun.jpg";
 
 export default function Home() {
   const services = [
@@ -17,9 +23,9 @@ export default function Home() {
   ];
 
   const trainers = [
-    { n: "Coach Nimal", s: "Strength & Conditioning" },
-    { n: "Coach Shehani", s: "Fat Loss & Mobility" },
-    { n: "Coach Kasun", s: "Athletic Performance" },
+    { n: "Coach Nimal", s: "Strength & Conditioning", img: nimalImg },
+    { n: "Coach Shehani", s: "Fat Loss & Mobility", img: shehaniImg },
+    { n: "Coach Kasun", s: "Athletic Performance", img: kasunImg },
   ];
 
   const stats = [
@@ -110,15 +116,16 @@ export default function Home() {
         <div className="grid cols3">
           {trainers.map((x, i) => (
             <ScrollReveal key={x.n} className={delayClass(i)}>
-              <Card className="hoverGlow" style={{ padding: 18 }}>
-                <div style={{ fontWeight: 900 }}>{x.n}</div>
-                <div className="p">{x.s}</div>
-                <div style={{ marginTop: 10 }}>
-                  <Link className="btn ghost" to="/trainers">
-                    View Profile
-                  </Link>
-                </div>
-              </Card>
+              <TrainerCard
+                name={x.n}
+                specialty={x.s}
+                image={x.img}
+                className="hoverGlow"
+              >
+                <Link className="btn ghost" to="/trainers" style={{ color: "#fff", borderColor: "rgba(255,255,255,0.2)" }}>
+                  View Profile
+                </Link>
+              </TrainerCard>
             </ScrollReveal>
           ))}
         </div>

@@ -9,7 +9,7 @@ export default function About() {
   const values = [
     { t: "Discipline", d: "Small habits every day create big results." },
     { t: "Technique", d: "Train smart and safe — form always matters." },
-    { t: "Consistency", d: "Progress is built by showing up again and again." },
+    { t: "Consistency", d: "Progress is built by showing up again." },
   ];
 
   return (

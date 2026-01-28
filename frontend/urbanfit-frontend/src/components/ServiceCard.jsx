@@ -15,12 +15,16 @@ export default function ServiceCard({ children, className = "", style, folderNam
         });
     }, [folderName, frameCount]);
 
-    // Preload frames
+    const preloadedImages = useRef([]);
+
+    // Preload frames and keep them in memory
     useEffect(() => {
-        frames.forEach((src) => {
+        const imageObjects = frames.map((src) => {
             const img = new Image();
             img.src = src;
+            return img;
         });
+        preloadedImages.current = imageObjects;
     }, [frames]);
 
     // Animation control
