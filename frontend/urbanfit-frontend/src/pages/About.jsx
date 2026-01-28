@@ -15,7 +15,7 @@ export default function About() {
   return (
     <>
       {/* Header */}
-      <div className="section" style={{ paddingTop: 90, paddingBottom: 30 }}>
+      <div className="section" style={{ paddingTop: 60, paddingBottom: 30 }}>
         <div className="container">
           <ScrollReveal>
             <div className="glass header-glass">

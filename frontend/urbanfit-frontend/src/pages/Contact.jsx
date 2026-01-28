@@ -44,7 +44,7 @@ export default function Contact() {
   }
 
   return (
-    <div className="section" style={{ minHeight: "80vh", display: "flex", alignItems: "center" }}>
+    <div className="section" style={{ paddingTop: 60, paddingBottom: 60 }}>
       <div className="container small">
         <ScrollReveal>
           <div className="glass contactCard" style={{ padding: "40px 30px" }}>

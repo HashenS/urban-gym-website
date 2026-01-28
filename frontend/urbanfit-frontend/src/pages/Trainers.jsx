@@ -41,7 +41,7 @@ export default function Trainers() {
   return (
     <>
       {/* Header */}
-      <div className="section" style={{ paddingTop: 90, paddingBottom: 30 }}>
+      <div className="section" style={{ paddingTop: 60, paddingBottom: 30 }}>
         <div className="container">
           <ScrollReveal>
             <div className="glass" style={{ padding: 24 }}>

@@ -73,7 +73,7 @@ export default function Pricing() {
   return (
     <>
       {/* Header */}
-      <div className="section" style={{ paddingTop: 90, paddingBottom: 30 }}>
+      <div className="section" style={{ paddingTop: 60, paddingBottom: 30 }}>
         <div className="container">
           <ScrollReveal>
             <div className="glass header-glass" style={{ textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center" }}>
