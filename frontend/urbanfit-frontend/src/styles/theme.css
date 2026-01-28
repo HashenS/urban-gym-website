@@ -41,10 +41,7 @@ canvas[style*="position: fixed"],
 body {
   margin: 0;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
-  background:
-    radial-gradient(900px 500px at 20% 10%, rgba(34, 197, 94, 0.16), transparent 60%),
-    radial-gradient(700px 450px at 80% 15%, rgba(0, 255, 136, 0.10), transparent 60%),
-    linear-gradient(180deg, var(--bg0), var(--bg1));
+  background: transparent !important;
   color: var(--text);
   min-height: 100vh;
   cursor: auto !important;
@@ -104,37 +101,69 @@ a {
 }
 
 .btn.primary {
-  background: linear-gradient(180deg, rgba(34, 197, 94, 0.95), rgba(0, 255, 136, 0.75));
-  color: #04110b;
-  box-shadow: var(--glow);
+  background: linear-gradient(135deg, #22c55e, #00ff88);
+  color: #05070b;
+  /* Deep black for max contrast */
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
+  font-size: 17px;
+  padding: 14px 24px;
+  animation: pulseButton 3s infinite ease-in-out;
+}
+
+/* Professional Auto-Shine Effect */
+.btn.primary::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -150%;
+  width: 100%;
+  height: 200%;
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent);
+  transform: rotate(25deg);
+  animation: shimmerSweep 4s infinite ease-in-out;
+}
+
+@keyframes shimmerSweep {
+  0% {
+    left: -150%;
+  }
+
+  20% {
+    left: 150%;
+  }
+
+  100% {
+    left: 150%;
+  }
+}
+
+@keyframes pulseButton {
+  0% {
+    box-shadow: 0 0 15px rgba(34, 197, 94, 0.3);
+  }
+
+  50% {
+    box-shadow: 0 0 30px rgba(34, 197, 94, 0.6);
+  }
+
+  100% {
+    box-shadow: 0 0 15px rgba(34, 197, 94, 0.3);
+  }
+}
+
+.btn:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
 .btn.ghost {
   background: rgba(255, 255, 255, 0.03);
   color: var(--text);
-}
-
-/* Professional Button Shine Effect */
-.btn.primary::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg,
-      transparent,
-      rgba(255, 255, 255, 0.2),
-      transparent);
-  transition: 0.5s;
-}
-
-.btn.primary:hover::after {
-  left: 100%;
-}
-
-.btn:hover {
-  transform: translateY(-2px);
+  font-size: 17px;
+  padding: 14px 24px;
 }
 
 .btn:active {
@@ -425,4 +454,97 @@ a {
 
 .trainerCardWrapper:hover .trainerCard {
   border-color: rgba(34, 197, 94, 0.35);
+}
+
+/* Global Background Effects */
+.bg-effects-container {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  overflow: hidden;
+  background: var(--bg0);
+  pointer-events: none;
+}
+
+.energy-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.15;
+  will-change: transform, opacity;
+}
+
+.orb-1 {
+  width: 60vw;
+  height: 60vw;
+  background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+  top: -20%;
+  left: -10%;
+  animation: orbFloat 40s ease-in-out infinite alternate;
+}
+
+.orb-2 {
+  width: 50vw;
+  height: 50vw;
+  background: radial-gradient(circle, #00ff88 0%, transparent 70%);
+  bottom: -10%;
+  right: -5%;
+  animation: orbFloat 35s ease-in-out infinite alternate-reverse;
+}
+
+.orb-3 {
+  width: 40vw;
+  height: 40vw;
+  background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
+  top: 30%;
+  left: 40%;
+  animation: orbFloat 50s ease-in-out infinite alternate;
+  opacity: 0.1;
+}
+
+.mesh-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  mask-image: radial-gradient(circle at center, black, transparent 80%);
+  -webkit-mask-image: radial-gradient(circle at center, black, transparent 80%);
+  opacity: 0.5;
+}
+
+.bg-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 0%, var(--bg0) 100%);
+  opacity: 0.8;
+}
+
+.floating-icon {
+  position: absolute;
+  color: var(--accent);
+  pointer-events: none;
+  filter: blur(0px);
+  /* Removed blur for clarity */
+  z-index: 5;
+  /* Relative to its container, but helps clarity */
+}
+
+@keyframes orbFloat {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  33% {
+    transform: translate(5%, 10%) scale(1.1);
+  }
+
+  66% {
+    transform: translate(-5%, 5%) scale(0.9);
+  }
+
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
 }
