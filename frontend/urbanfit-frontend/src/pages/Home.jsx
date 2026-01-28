@@ -1,4 +1,4 @@
-// src/pages/Home.jsx
+import { useState, useEffect, useRef, useMemo } from "react";
 import { Link } from "react-router-dom";
 import Section from "../components/Section";
 import Card from "../components/Card";
@@ -7,16 +7,53 @@ import TrainerCard from "../components/TrainerCard";
 import ScrollReveal from "../components/ScrollReveal";
 import ExplodingButton from "../components/ExplodingButton";
 
-// ✅ Scroll-scrubbed video component (REPLACED BY STATIC IMAGE)
-// import HeroVideo from "../components/HeroVideo";
-import heroImg from "../assets/hero.png";
-
 // Trainer Images
 import nimalImg from "../assets/trainers/nimal.jpg";
 import shehaniImg from "../assets/trainers/shehani.jpg";
 import kasunImg from "../assets/trainers/kasun.jpg";
 
 export default function Home() {
+  const canvasRef = useRef(null);
+  const frameCount = 240;
+  const imagesRef = useRef([]);
+  const frameIndexRef = useRef(0);
+  const lastTimeRef = useRef(0);
+
+  // Preload frames
+  useEffect(() => {
+    const frames = Array.from({ length: frameCount }, (_, i) => {
+      const frameNumber = String(i + 1).padStart(3, "0");
+      return new URL(`../assets/video_frames/heroo/ezgif-frame-${frameNumber}.jpg`, import.meta.url).href;
+    });
+
+    const loadedImages = frames.map((src) => {
+      const img = new Image();
+      img.src = src;
+      return img;
+    });
+    imagesRef.current = loadedImages;
+
+    // Animation Loop
+    const animate = (time) => {
+      if (time - lastTimeRef.current >= 40) { // ~25fps
+        lastTimeRef.current = time;
+        const canvas = canvasRef.current;
+        if (canvas) {
+          const ctx = canvas.getContext("2d");
+          const img = imagesRef.current[frameIndexRef.current];
+          if (img && img.complete) {
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+          }
+          frameIndexRef.current = (frameIndexRef.current + 1) % frameCount;
+        }
+      }
+      requestAnimationFrame(animate);
+    };
+
+    const requestId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(requestId);
+  }, []);
+
   const services = [
     { t: "Strength Training", d: "Progressive plans to build real muscle and power.", folder: "strength_traning", count: 31 },
     { t: "Fat Loss Programs", d: "Sustainable routines with diet guidance & tracking.", folder: "fatt_loss", count: 63 },
@@ -44,8 +81,17 @@ export default function Home() {
         <div className="container">
           <ScrollReveal>
             <div className="glass heroCover">
-              {/* image behind text */}
-              <img src={heroImg} className="heroAthlete" alt="Hero Athlete" />
+              {/* High-performance Canvas animation (no flicker) */}
+              <canvas
+                ref={canvasRef}
+                className="heroAthlete"
+                width={1280} // Base resolution
+                height={720}
+                style={{
+                  filter: "blur(8px)",
+                  transform: "scale(1.1)", // Slight scale to hide edge artifacts from blur
+                }}
+              />
 
               {/* content above image */}
               <div className="heroCoverContent">
