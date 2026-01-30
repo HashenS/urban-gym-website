@@ -55,6 +55,7 @@ GitHub stores the code, but **Vercel** is the engine that makes it a real websit
 
 ## 💡 Junior Pro-Tips:
 - **The .gitignore is your shield**: I already made this for you. It prevents your private stuff (like database passwords) from being public on GitHub. **Never delete it.**
+- **The Refresh Fix**: I created a `vercel.json` file for you. Without it, refreshing a sub-page (like `/about`) would show a 404 error. This file tells Vercel to let React handle the routing!
 - **Automatic Updates**: From now on, every time you run `git add .`, `git commit`, and `git push`, your website on Vercel will **automatically update**. No need to repeat the Vercel steps!
 
 You're doing great—go show that client what you built! 🏋️‍♂️🔥
