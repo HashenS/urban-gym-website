@@ -77,7 +77,13 @@ app.delete("/contacts/:id", async (req, res) => {
   }
 });
 
-// start server
-app.listen(process.env.PORT, () => {
-  console.log(`✅ Server running on http://localhost:${process.env.PORT}`);
-});
+// start server (only if NOT on Vercel)
+if (process.env.NODE_ENV !== "production") {
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => {
+    console.log(`✅ Server running on http://localhost:${PORT}`);
+  });
+}
+
+// Export for Vercel
+module.exports = app;
