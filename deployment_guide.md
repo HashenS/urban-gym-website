@@ -33,29 +33,50 @@ GitHub is where your code lives. Think of it as "Google Drive for Devs."
 
 ---
 
-## 🌐 Phase 2: Make the Website Live (Hosting)
-GitHub stores the code, but **Vercel** is the engine that makes it a real website people can visit.
+# 🚀 Final Deployment Guide (Vercel Only)
 
-### 1. The Frontend (The Website UI)
-1. Go to [Vercel.com](https://vercel.com/) and sign up with your GitHub account.
-2. Click **Add New** -> **Project**.
-3. Find your `urban-gym-website` repo and click **Import**.
-4. **IMPORTANT**: In the "Root Directory" setting, click **Edit** and select the `frontend/urbanfit-frontend` folder.
-5. Click **Deploy**. In 2 minutes, you'll get a real URL (e.g., `urbanfit.vercel.app`) to send to your client!
-
-### 2. The Backend (The "Contact Form" Engine)
-1. Go to [Render.com](https://render.com/) and sign up with GitHub.
-2. Click **New +** -> **Web Service**.
-3. Connect your GitHub repo.
-4. Set the **Root Directory** to `api`.
-5. Set the **Build Command** to `npm install` and **Start Command** to `node server.js`.
-6. Click **Create Web Service**. 
+Since we are now using **Email Notifications** instead of a database, your deployment is incredibly simple and **100% Free**.
 
 ---
 
-## 💡 Junior Pro-Tips:
-- **The .gitignore is your shield**: I already made this for you. It prevents your private stuff (like database passwords) from being public on GitHub. **Never delete it.**
-- **The Refresh Fix**: I created a `vercel.json` file for you. Without it, refreshing a sub-page (like `/about`) would show a 404 error. This file tells Vercel to let React handle the routing!
-- **Automatic Updates**: From now on, every time you run `git add .`, `git commit`, and `git push`, your website on Vercel will **automatically update**. No need to repeat the Vercel steps!
+## 🏎️ Step 1: Push your latest code to GitHub
+Run these commands in your VS Code terminal:
+```bash
+git add .
+git commit -m "feat: professional email system ready"
+git push origin main
+```
 
-You're doing great—go show that client what you built! 🏋️‍♂️🔥
+---
+
+## 🧠 Step 2: Deploy the Backend (The "Brain")
+1.  Go to your [Vercel Dashboard](https://vercel.com/dashboard).
+2.  Click **Add New** > **Project** and import your `urban-gym-website` repo.
+3.  **Project Name**: `urbanfit-api`
+4.  **Root Directory**: Click "Edit" and select the **`api`** folder.
+5.  **Environment Variables**:
+    -   `EMAIL_USER` = your email (`hashenshehara4@gmail.com`)
+    -   `EMAIL_PASS` = your app password (`mquikyflfqplulga`)
+6.  Click **Deploy**. 
+7.  **Copy the URL** Vercel gives you (e.g., `https://urbanfit-api.vercel.app`).
+
+---
+
+## 🎨 Step 3: Deploy the Frontend (The "Face")
+1.  Go back to your Vercel Dashboard.
+2.  Click **Add New** > **Project** and import the same repo again.
+3.  **Project Name**: `urbanfit-lanka`
+4.  **Root Directory**: Click "Edit" and select the **`frontend/urbanfit-frontend`** folder.
+5.  **Environment Variables**:
+    -   `VITE_API_URL` = paste the **Backend URL** from Step 2.
+6.  Click **Deploy**.
+
+---
+
+## ✅ You are done!
+- Your website is live.
+- Your email system is active.
+- There are no databases to manage.
+- It costs you **$0.00**.
+
+Go show your client! 🏋️‍♂️🚀🔥

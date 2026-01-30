@@ -8,14 +8,16 @@ export default function Contact() {
     email: "",
     phone: "",
     subject: "",
-    message: ""
+    message: "",
+    sendCopy: false
   });
   const API = import.meta.env.VITE_API_URL;
   const [loading, setLoading] = useState(false);
   const [msg, setMsg] = useState("");
 
   function onChange(e) {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    const { name, value, type, checked } = e.target;
+    setForm({ ...form, [name]: type === "checkbox" ? checked : value });
   }
 
   async function onSubmit(e) {
@@ -34,7 +36,7 @@ export default function Contact() {
       setMsg(data.msg || "Message sent successfully!");
 
       if (data.ok) {
-        setForm({ name: "", email: "", phone: "", subject: "", message: "" });
+        setForm({ name: "", email: "", phone: "", subject: "", message: "", sendCopy: false });
       }
     } catch (err) {
       setMsg("Backend services currently unavailable. ❌");
@@ -76,7 +78,21 @@ export default function Contact() {
                 style={{ gridColumn: "1 / -1", minHeight: 150 }}
               />
 
-              <div style={{ gridColumn: "1 / -1", textAlign: "center", marginTop: 10 }}>
+              <div style={{ gridColumn: "1 / -1", display: "flex", alignItems: "center", gap: 10, marginTop: 10 }}>
+                <input
+                  type="checkbox"
+                  name="sendCopy"
+                  id="sendCopy"
+                  checked={form.sendCopy}
+                  onChange={onChange}
+                  style={{ width: 18, height: 18, accentColor: "var(--accent)", cursor: "pointer" }}
+                />
+                <label htmlFor="sendCopy" style={{ cursor: "pointer", fontSize: "0.9rem", color: "var(--muted)" }}>
+                  Send me a copy of this message
+                </label>
+              </div>
+
+              <div style={{ gridColumn: "1 / -1", textAlign: "center", marginTop: 20 }}>
                 <ExplodingButton
                   to="/contact"
                   className="w-full"
